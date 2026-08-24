@@ -5,152 +5,207 @@
 <h1 align="center">STEMMA</h1>
 
 <p align="center">
-  <strong>Application de généalogie 100% locale, open-source et cross-platform</strong>
+  <em>A 100% local, open-source genealogy application</em>
 </p>
 
 <p align="center">
-  Aucune connexion réseau • Aucune télémétrie • Aucune donnée envoyée<br>
-  Vos données vous appartiennent.
+  <a href="#features">Features</a> &bull;
+  <a href="#why-stemma">Why STEMMA</a> &bull;
+  <a href="#installation">Installation</a> &bull;
+  <a href="#requirements">Requirements</a> &bull;
+  <a href="#development">Development</a> &bull;
+  <a href="#contributing">Contributing</a> &bull;
+  <a href="#license">License</a>
 </p>
 
 <p align="center">
-  <a href="#installation">Installation</a> •
-  <a href="#fonctionnalites">Fonctionnalités</a> •
-  <a href="#requirements">Requirements</a> •
-  <a href="# developpement">Développement</a> •
-  <a href="#architecture">Architecture</a> •
-  <a href="#licence">Licence</a>
+  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-blue" alt="Platforms">
+  <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
+  <img src="https://img.shields.io/badge/version-0.1.0-orange" alt="Version">
 </p>
 
 ---
 
-## Pourquoi STEMMA ?
+## About
 
-La plupart des logiciels de généalogie requièrent un compte en ligne, stockent vos données sur leurs serveurs ou envolent des informations à des tiers. **STEMMA** a été conçu pour les personnes qui souhaitent **garder le contrôle total** de leur arbre généalogique.
+STEMMA is a desktop genealogy application built with [Tauri](https://tauri.app). Your data never leaves your machine — no cloud sync, no accounts, no telemetry.
 
-| | Logiciels en ligne | STEMMA |
+## Why STEMMA
+
+Most genealogy tools require online accounts, store your data on remote servers, or share information with third parties. STEMMA was built for users who want **full ownership** of their family tree.
+
+| | Online tools | STEMMA |
 |---|---|---|
-| **Données stockées** | Serveurs distants | Votre ordinateur uniquement |
-| **Connexion internet** | Requise | Jamais nécessaire |
-| **Compte obligatoire** | Oui | Non |
-| **Vie privée** | Dépend de la politique du service | 100% garantie |
-| **Portabilité** | Non | Clé USB possible |
-| **Coût** | Souvent payant | Gratuit et open-source |
+| **Data storage** | Remote servers | Your computer only |
+| **Internet required** | Yes | Never |
+| **Account required** | Yes | No |
+| **Privacy** | Depends on provider | 100% guaranteed |
+| **Portability** | No | USB drive supported |
+| **Cost** | Often paid | Free & open-source |
 
----
+## Features
 
-## Fonctionnalites
+### Family Tree
+- **Descendant** (ancestors &rarr; descendants) and **ascendant** (children &rarr; ancestors) views
+- Automatic layout with React Flow
+- Interactive nodes with profile photos and quick info
 
-### Arbre generique
-- Vue **descendante** (ancetres → descendants) et **ascendante** (enfants → ascendants)
-- Mise en page automatique via React Flow
-- Nœuds interactifs avec photo de profil et informations rapides
+### People
+- Full profiles: first name, last name, birth name, sex, profession, notes
+- Flexible dates: exact, circa, before, after, between, unknown
+- Profile photos with initials fallback
+- Soft delete &mdash; reversible
 
-### Gestion des personnes
-- Fiches complètes : prénom, nom, nom de naissance, sexe, profession, notes
-- Dates flexibles : exacte, « vers », « avant », « après », « entre », inconnue
-- Photos de profil avec fallback par initiales
-- Suppression logique (soft delete) — réversible
+### Families & Unions
+- Marriages, civil unions, PACS, common-law partnerships
+- Multiple partners per union
+- Parent &rarr; child relationships: biological, adoptive, stepparent
+- Blended family support
 
-### Familles et unions
-- Mariages, civils, PACS, unions libres, concubinage
-- Partenaires multiples par union
-- Relations parent → enfant : biologique, adoptive, beau-parent
-- Support des familles recomposées
+### Events
+- Births, deaths, marriages, baptisms, moves, and more
+- Custom event types
+- Flexible dates and places
+- Filter by type
 
-### Evenements
-- Naissances, décès, mariages, baptêmes, déménagements, etc.
-- Types personnalisables
-- Dates flexibles et lieux
-- Filtrage par type
+### Sources & Citations
+- Document references (records, archives, books)
+- Citations linked to any entity (person, union, event)
+- Fields: author, date, archive, reference, URL, comments
 
-### Sources et citations
-- Références documentaires (actes, archives, ouvrages)
-- Citations liées à n'importe quelle entité (personne, union, événement)
-- Champs : auteur, date, archive, référence, URL, commentaire
+### Media
+- Local import of photos and documents (JPG, PNG, WebP, PDF, etc.)
+- Link any media to a person, union, or event
+- Gallery with preview and protected deletion
 
-### Medias
-- Import local de photos et documents (JPG, PNG, WebP, PDF, etc.)
-- Liaison de n'importe quel média à une personne, union ou événement
-- Galerie avec aperçu et suppression protégée
-
-### Recherche
-- Recherche multi-catégories : personnes, familles, sources, événements
-- Filtres et onglets par catégorie avec compteurs
-- Texte normalisé (sans accents, insensible à la casse)
+### Search
+- Multi-category search: people, families, sources, events
+- Tabbed filters with counters
+- Normalized text (accent-insensitive, case-insensitive)
 
 ### Import / Export
-- **GEDCOM 5.5.1** : import et export complet
-- Import via sélection de fichier local
-- Export avec dialogue de sauvegarde
+- **GEDCOM 5.5.1**: full import and export
+- Local file selection
+- Save dialog for exports
 
-### Sauvegarde et restauration
-- Sauvegarde complète : base de données + médias dans un ZIP
-- **Chiffrement optionnel** : AES-128-CBC + HMAC-SHA256
-- Mot de passe dérivé via PBKDF2 (100 000 itérations)
-- Copie de sécurité automatique avant restauration
+### Backup & Restore
+- Full backup: database + media in a ZIP
+- **Optional encryption**: AES-128-CBC + HMAC-SHA256
+- Password derived via PBKDF2 (100,000 iterations)
+- Automatic safety backup before restore
 
-### Mode portable
-- Fichier `portable` à côté de l'exécutable → données stockées localement
-- Idéal pour une **clé USB** : emportez votre arbre partout
-- Script de déploiement USB inclus
+### Portable Mode
+- Place a `portable` file next to the executable &rarr; data stored locally
+- Ideal for **USB drives**: carry your tree everywhere
+- USB deployment script included
 
 ### Interface
-- Thème **clair** et **sombre**
-- Sidebar rétractable
-- 12+ pages avec navigation latérale
-- Composants UI modernes (shadcn/ui)
+- **Light** and **dark** themes
+- Collapsible sidebar
+- 12+ pages with side navigation
+- Modern UI components (shadcn/ui)
 - Responsive (960px minimum)
 
----
+## Installation
+
+### Download Releases
+
+Go to the [Releases](../../releases) page to download the latest stable build for your platform.
+
+| Platform | Format |
+|---|---|
+| Windows 10+ | `.exe` (NSIS) / `.msi` |
+| macOS 10.15+ | `.dmg` (Intel & Apple Silicon) |
+| Linux (Ubuntu 22.04 / Debian 12) | `.deb` / `.AppImage` |
+
+### Portable Mode (All Platforms)
+
+1. Copy the executable (and DLLs on Windows) to a folder
+2. Create an empty file named `portable` (no extension) in the same folder
+3. Launch the app &mdash; data is stored in `./data/` next to the executable
+
+```
+STEMMA/
+├── stemma.exe          (or stemma on macOS/Linux)
+├── portable            (empty file)
+├── data/
+│   ├── projects/
+│   │   └── my-project/
+│   │       ├── familytree.db
+│   │       └── media/
+│   └── backups/
+```
+
+### USB Deployment (Windows)
+
+```powershell
+.\deploy-stemma.ps1 -Destination "E:\STEMMA"
+```
+
+Copies the executable, DLLs, creates the `portable` file and a `.bat` launcher.
 
 ## Requirements
 
-### Taille de l'application
+### Disk Space
 
-| Composant | Taille |
+| Component | Size |
 |---|---|
-| Exécutable Windows (stemma.exe) | ~5 Mo |
-| DLLs WebView2 (embarquées) | ~10 Mo |
-| **Total installé** | **~15 Mo** |
-| Données par projet (SQLite + médias) | Variable (1 Ko → Go selon les photos) |
+| Windows executable | ~5 MB |
+| Bundled WebView2 DLLs | ~10 MB |
+| **Total installed** | **~15 MB** |
+| Data per project (SQLite + media) | Variable (KB to GB depending on photos) |
 
-### Puissance requise
+### Hardware
 
-STEMMA est **extrêmement léger**. Pas besoin de machine performante :
+STEMMA is extremely lightweight:
 
-| Ressource | Minimum | Recommandé |
+| Resource | Minimum | Recommended |
 |---|---|---|
-| **RAM** | 256 Mo | 512 Mo |
-| **CPU** | Tout processeur x64 moderne | — |
-| **Disque** | 50 Mo pour l'application + espace pour les données | 500 Mo+ avec photos |
-| **Ecran** | 960 × 600 | 1280 × 820 ou plus |
+| **RAM** | 256 MB | 512 MB |
+| **CPU** | Any modern x64 processor | &mdash; |
+| **Disk** | 50 MB for app + space for data | 500 MB+ with photos |
+| **Display** | 960 &times; 600 | 1280 &times; 820 or higher |
 
-> STEMMA utilise SQLite (une seule fichier `.db`) qui est stocké entièrement en RAM pour les opérations fréquentes. Même avec des milliers de personnes, l'application reste réactive.
+> STEMMA uses SQLite (a single `.db` file) cached in memory for frequent operations. The app stays responsive even with thousands of records.
 
-### Systemes supportes
+### Supported Systems
 
-| OS | Version minimum | Format |
+| OS | Minimum Version | Package Format |
 |---|---|---|
-| **Windows** | 10 (build 1903) | `.exe` (NSIS) / `.msi` |
-| **macOS** | 10.15 (Catalina) | `.dmg` (Intel + Apple Silicon) |
+| **Windows** | 10 (build 1903) | `.exe` / `.msi` |
+| **macOS** | 10.15 (Catalina) | `.dmg` |
 | **Linux** | Ubuntu 22.04 / Debian 12 | `.deb` / `.AppImage` |
 
-> **Windows 7/8** : non supporté (Tauri 2 requiert Windows 10+). Le mode portable peut fonctionner sur USB avec WebView2 pré-installé.
+> **Windows 7/8** is not supported (Tauri 2 requires Windows 10+). Portable mode may work on USB with WebView2 pre-installed.
 
-### Dependances systeme (pour le build depuis les sources)
+## Development
 
-**Windows :**
-- [Rust](https://rustup.rs/) (toolchain GNU, pas MSVC)
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) v22+
+- [Rust](https://rustup.rs/) (stable toolchain)
+- Git
+
+### Platform-Specific Dependencies
+
+<details>
+<summary><strong>Windows</strong></summary>
+
+- [Rust](https://rustup.rs/) (GNU toolchain, not MSVC)
 - Node.js 22+
-- WebView2 (installé automatiquement sur Windows 10+)
+- WebView2 (auto-installed on Windows 10+)
+</details>
 
-**macOS :**
-- Xcode Command Line Tools (`xcode-select --install`)
+<details>
+<summary><strong>macOS</strong></summary>
+
+- Xcode Command Line Tools: `xcode-select --install`
 - Rust + Node.js 22+
-- WebView2 inclus dans macOS
+</details>
 
-**Linux :**
+<details>
+<summary><strong>Linux</strong></summary>
+
 ```bash
 sudo apt-get install -y \
   libwebkit2gtk-4.1-dev \
@@ -160,191 +215,133 @@ sudo apt-get install -y \
   patchelf
 ```
 - Rust + Node.js 22+
+</details>
 
----
-
-## Installation
-
-### Telecharger les releases
-
-Rendez-vous sur la page [Releases](../../releases) du dépôt GitHub pour telecharger la version stable pour votre systeme.
-
-### Mode portable (toutes plateformes)
-
-1. Copiez l'exécutable (et les DLLs sur Windows) dans un dossier
-2. Créez un fichier vide nommé `portable` (sans extension) dans le même dossier
-3. Lancez l'application — les données seront stockées dans `./data/` à côté de l'exécutable
-
-```
-MonDossier/
-├── stemma.exe          (ou stemma sur macOS/Linux)
-├── portable            (fichier vide)
-├── data/
-│   ├── projects/
-│   │   └── mon-projet/
-│   │       ├── familytree.db
-│   │       └── media/
-│   └── backups/
-```
-
-### Deploiement USB (Windows)
-
-```powershell
-.\deploy-stemma.ps1 -Destination "E:\STEMMA"
-```
-
-Ce script copie l'exe, les DLLs, crée le fichier `portable` et un lanceur `.bat`.
-
----
-
-## Developpement
-
-### Pre-requis
-
-- [Node.js](https://nodejs.org/) v22+
-- [Rust](https://rustup.rs/) (toolchain stable)
-- Git
-
-### Installation
+### Getting Started
 
 ```bash
-# Cloner le depot
-git clone https://github.com/ADZirid/stemma.git
-cd stemma
-
-# Installer les dependances JS
+git clone https://github.com/ADZirid/STEMMA.git
+cd STEMMA
 npm install
-
-# Lancer en mode dev (frontend + backend)
 npm run tauri:dev
 ```
 
-### Commandes disponibles
+### Available Scripts
 
-| Commande | Description |
+| Command | Description |
 |---|---|
-| `npm run dev` | Frontend Vite seul (hot reload) |
-| `npm run tauri:dev` | App complète en mode dev |
-| `npm run build` | Build frontend de production |
-| `npm run tauri:build` | Build complet (frontend + Rust release) |
-| `npm test` | Lancer les tests (29 tests) |
-| `npm run lint` | Linter (oxlint) |
-| `npm run validate` | Lint + test + build complet |
+| `npm run dev` | Frontend only (Vite hot reload) |
+| `npm run tauri:dev` | Full app in dev mode |
+| `npm run build` | Production frontend build |
+| `npm run tauri:build` | Full release build (frontend + Rust) |
+| `npm test` | Run tests (29 tests) |
+| `npm run lint` | Lint with oxlint |
+| `npm run validate` | Lint + test + build |
 
 ### CI/CD
 
-Le projet utilise **GitHub Actions** pour les builds automatisés :
+GitHub Actions automates builds across platforms:
 
-- **CI** (`ci.yml`) : lint + tests + build multi-OS à chaque push/PR
-- **Release** (`release.yml`) : build + upload des installers sur tag `v*`
+- **CI** (`ci.yml`): lint, tests, and build on every push/PR
+- **Release** (`release.yml`): build and upload installers on `v*` tags
 
-Pour créer une release :
+To create a release:
 ```bash
 git tag v0.1.0
 git push origin v0.1.0
 ```
 
----
-
 ## Architecture
 
 ```
-stemma/
-├── src/                          # Frontend React/TypeScript
-│   ├── components/               # Composants UI
-│   │   ├── layout/               # AppShell, sidebar, headers
-│   │   ├── media/                # Liaison médias, photo de profil
-│   │   ├── person/               # Formulaires personnes, dates
-│   │   ├── tree/                 # Nœuds arbre (React Flow)
-│   │   └── ui/                   # Composants shadcn (20+)
-│   ├── database/                 # Couche d'accès SQLite (via Tauri invoke)
+STEMMA/
+├── src/                          # Frontend (React / TypeScript)
+│   ├── components/               # UI components
+│   │   ├── layout/               # AppShell, sidebar, page headers
+│   │   ├── media/                # Media linking, profile photos
+│   │   ├── person/               # Person forms, date fields
+│   │   ├── tree/                 # Tree nodes (React Flow)
+│   │   └── ui/                   # shadcn components (20+)
+│   ├── database/                 # Data access layer (Tauri IPC)
 │   │   └── repositories/         # person, union, source, event, media
-│   ├── features/                 # Modules métier
-│   │   ├── tree/                 # Moteur de relations + layout
-│   │   ├── import/               # Parser GEDCOM 5.5.1
-│   │   ├── export/               # Export GEDCOM + PDF/PNG
-│   │   └── search/               # Recherche multi-catégories
-│   ├── lib/                      # Utilitaires (dates, normalisation)
-│   ├── pages/                    # 12+ pages
-│   ├── stores/                   # État global (Zustand)
-│   └── types/                    # Types TypeScript
-├── src-tauri/                    # Backend Rust (Tauri 2)
+│   ├── features/                 # Business logic
+│   │   ├── tree/                 # Relation engine + layout
+│   │   ├── import/               # GEDCOM 5.5.1 parser
+│   │   ├── export/               # GEDCOM + PDF/PNG export
+│   │   └── search/               # Multi-category search
+│   ├── lib/                      # Utilities (dates, normalization)
+│   ├── pages/                    # 12+ application pages
+│   ├── stores/                   # Global state (Zustand)
+│   └── types/                    # TypeScript types
+├── src-tauri/                    # Backend (Rust / Tauri 2)
 │   ├── src/
-│   │   ├── commands.rs           # 25+ commandes Tauri (IPC)
-│   │   ├── db.rs                 # Connexions SQLite + migrations
-│   │   ├── backup.rs             # Chiffrement AES-128-CBC + ZIP
-│   │   ├── lib.rs                # Builder Tauri + plugins
-│   │   └── main.rs               # Point d'entrée
+│   │   ├── commands.rs           # 25+ Tauri IPC commands
+│   │   ├── db.rs                 # SQLite connections + migrations
+│   │   ├── backup.rs             # AES-128-CBC encryption + ZIP
+│   │   ├── lib.rs                # Tauri builder + plugins
+│   │   └── main.rs               # Entry point
 │   ├── migrations/
-│   │   └── 0001_schema.sql       # Schéma complet (10 tables)
-│   └── icons/                    # Icônes multi-plateformes
-├── .github/workflows/            # CI/CD GitHub Actions
-└── deploy-stemma.ps1             # Script déploiement USB
+│   │   └── 0001_schema.sql       # Full schema (10 tables)
+│   └── icons/                    # Cross-platform icons
+├── .github/workflows/            # CI/CD (GitHub Actions)
+└── deploy-stemma.ps1             # USB deployment script
 ```
 
-### Base de données (SQLite)
-
-10 tables couvrant l'ensemble du domaine généalogique :
+### Database Schema (SQLite)
 
 | Table | Description |
 |---|---|
-| `person` | Individus (prénom, nom, sexe, profession) |
-| `date_value` | Dates flexibles (exacte, vers, avant, après, entre) |
-| `person_date` | Dates liées aux personnes (naissance, décès) |
-| `union_family` | Familles / unions |
-| `union_partner` | Participants à une union |
-| `union_child` | Enfants rattachés à une union |
-| `parent_child` | Liens directs parent → enfant |
-| `event` | Événements (naissances, mariages, etc.) |
-| `source` | Sources documentaires |
-| `citation` | Citations liant sources à entités |
-| `media` / `media_link` | Médias et liaisons |
-| `person_search` | Index de recherche textuelle |
+| `person` | Individuals (name, sex, profession) |
+| `date_value` | Flexible dates (exact, circa, before, after, between) |
+| `person_date` | Dates linked to persons (birth, death) |
+| `union_family` | Families / unions |
+| `union_partner` | Participants in a union |
+| `union_child` | Children linked to a union |
+| `parent_child` | Direct parent &rarr; child links |
+| `event` | Events (births, marriages, etc.) |
+| `source` | Document sources |
+| `citation` | Citations linking sources to entities |
+| `media` / `media_link` | Media files and associations |
+| `person_search` | Full-text search index |
 
-### Securite
+### Security
 
-- **Chiffrement des backups** : AES-128-CBC + HMAC-SHA256 (PBKDF2 100k itérations)
-- **CSP restrictive** : aucune connexion réseau (`connect-src 'none'`)
-- **OS CSPRNG** : `getrandom` (arc4random /dev/urandom / BCryptGenRandom)
-- **Paramétrage SQL** : aucune concaténation, protection injection SQL
-- **Soft delete** : suppression logique, restauration possible
+- **Backup encryption**: AES-128-CBC + HMAC-SHA256 (PBKDF2, 100k iterations)
+- **Restrictive CSP**: no network connections (`connect-src 'none'`)
+- **OS CSPRNG**: `getrandom` (arc4random /dev/urandom / BCryptGenRandom)
+- **Parameterized SQL**: no string concatenation, SQL injection protection
+- **Soft delete**: logical deletion, reversible
 
----
+## Tech Stack
 
-## Stack technique
-
-| Couche | Technologie |
+| Layer | Technology |
 |---|---|
 | Frontend | React 19, TypeScript, Tailwind CSS v4 |
 | UI | shadcn/ui, Radix UI, Lucide Icons |
-| Arbre | React Flow (@xyflow/react) |
-| État | Zustand |
+| Tree visualization | React Flow (@xyflow/react) |
+| State management | Zustand |
 | Backend | Tauri 2, Rust |
-| Base de données | SQLite (rusqlite, bundled) |
-| Chiffrement | AES-128-CBC, HMAC-SHA256, PBKDF2 |
+| Database | SQLite (rusqlite, bundled) |
+| Encryption | AES-128-CBC, HMAC-SHA256, PBKDF2 |
 | Build | Vite 8, Cargo, oxlint |
-| Tests | Vitest (frontend), cargo test (Rust) |
+| Testing | Vitest (frontend), cargo test (Rust) |
 
----
+## Contributing
 
-## Contribution
+Contributions are welcome!
 
-STEMMA est open-source et accueille les contributions !
+1. Fork the repository
+2. Create a branch (`git checkout -b feature/my-feature`)
+3. Commit your changes (`git commit -m 'feat: add feature'`)
+4. Push (`git push origin feature/my-feature`)
+5. Open a Pull Request
 
-1. Fork le dépôt
-2. Crée une branche (`git checkout -b feature/ma-feature`)
-3. Commit tes changements (`git commit -m 'feat: ajout de...'`)
-4. Push (`git push origin feature/ma-feature`)
-5. Ouvre une Pull Request
+## License
 
----
-
-## Licence
-
-MIT License — voir [LICENSE](LICENSE) pour les détails.
+[MIT License](LICENSE)
 
 ---
 
 <p align="center">
-  Fait avec ❤️ pour la communauté généalogique.
+  Built with care for the genealogy community.
 </p>
