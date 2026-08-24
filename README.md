@@ -342,6 +342,3 @@ Contributions are welcome!
 
 ---
 
-<p align="center">
-  Built with care for the genealogy community.
-</p>
